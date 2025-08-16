@@ -65,41 +65,44 @@ export default function Sidebar() {
       </div>
       <nav className="mt-10 space-y-4">
         {navItems.map((item, index) => (
-          <a
+          <NavItem
             key={index}
-            href={item.href}
-            tabIndex={-1}
-            style={{ display: 'block' }}
-            onClick={e => {
-              e.preventDefault();
-              handleNavClick(item.href, index);
-            }}
-          >
-            <NavItem
-              icon={item.icon}
-              label={item.label}
-              isOpen={isOpen}
-              active={activeIndex === index}
-            />
-          </a>
+            icon={item.icon}
+            label={item.label}
+            isOpen={isOpen}
+            active={activeIndex === index}
+            inactive={activeIndex !== null && activeIndex !== index}
+            onClick={() => handleNavClick(item.href, index)}
+          />
         ))}
       </nav>
     </div>
   );
 }
 
-function NavItem({ icon, label, isOpen, active }) {
+function NavItem({ icon, label, isOpen, active, inactive, onClick }) {
   return (
     <div
-      className={`flex items-center space-x-2 px-4 py-2 cursor-pointer group outline-none
-        ${active ? 'bg-purple-700' : ''}
-        hover:bg-purple-700 hover:text-pink-300 transition-colors duration-200`}
+      className={`
+        flex items-center px-4 py-2 cursor-pointer group outline-none
+        hover:bg-purple-800 hover:text-pink-300 transition-all duration-300
+        ${isOpen ? 'justify-start space-x-2' : 'justify-center'}
+        ${active ? 'opacity-100' : ''}
+        ${inactive ? 'opacity-40' : ''}
+      `}
       title={!isOpen ? label : undefined}
       tabIndex={0}
       role="button"
+      onClick={onClick}
     >
-      <div className="text-lg">{icon}</div>
-      {isOpen && <span className="transition-opacity duration-300">{label}</span>}
+      <div className="text-lg flex items-center justify-center w-8 h-8">
+        {icon}
+      </div>
+      {isOpen && (
+        <span className="transition-all duration-500 opacity-100 ml-2">
+          {label}
+        </span>
+      )}
     </div>
   );
 }
