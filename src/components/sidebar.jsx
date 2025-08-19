@@ -46,7 +46,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className={`bg-gray-950 text-white h-screen transition-all duration-300 ease-in-out ${isOpen ? 'w-44' : 'w-24'}`}>
+    <div className={`bg-gray-950 text-white h-screen transition-all duration-300 ease-in-out ${isOpen ? 'w-44' : 'w-20 sm:w-24'}`}>
       <div className="p-4 flex justify-between items-center">
         <div className="text-xl font-bold flex items-center">
           {isOpen ? (
