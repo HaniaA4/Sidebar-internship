@@ -39,8 +39,6 @@ src/
 
 │   └── Sidebar.js
 
-│   └── ToggleButton.js
-
 ├── App.js
 
 ├── index.js
